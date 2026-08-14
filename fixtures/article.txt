@@ -1,0 +1,18 @@
+Northwind Robotics Quarterly Update — Q2 (fictional sample data)
+
+Northwind Robotics closed its strongest quarter to date. Revenue reached $8.4M,
+up 21% year over year, driven by industrial demand for the company's Atlas
+manipulator arm. The company shipped 1,240 Atlas units during the quarter, a
+new record, and reported fleet uptime of 99.2% across 312 deployed customer
+sites.
+
+The team grew from 61 to 86 employees, with most new hires in field engineering
+and controls software. Northwind also opened its first European service
+facility in Rotterdam, which will handle maintenance for the region's growing
+installed base.
+
+On the supply side, the company signed a multi-year battery supply agreement
+with Voltcraft Industries worth $2.4M per year, securing cell capacity for the
+next generation of mobile platforms. Management said the agreement removes the
+single largest constraint on Atlas production going into the second half of
+the year.

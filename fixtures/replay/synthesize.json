@@ -1,0 +1,30 @@
+{
+  "headline": "Northwind Robotics posts a record quarter",
+  "claims": [
+    {
+      "id": "c1",
+      "text": "revenue $8.4M, up 21% YoY",
+      "evidence_quote": "Revenue reached $8.4M, up 21% year over year, driven by industrial demand for the company's Atlas manipulator arm."
+    },
+    {
+      "id": "c2",
+      "text": "shipped 1,240 Atlas units",
+      "evidence_quote": "The company shipped 1,240 Atlas units during the quarter, a new record"
+    },
+    {
+      "id": "c3",
+      "text": "99.2% fleet uptime across 312 sites",
+      "evidence_quote": "reported fleet uptime of 99.2% across 312 deployed customer sites"
+    },
+    {
+      "id": "c4",
+      "text": "headcount grew 61 -> 86",
+      "evidence_quote": "The team grew from 61 to 86 employees, with most new hires in field engineering and controls software."
+    },
+    {
+      "id": "c5",
+      "text": "Voltcraft deal worth $4.2M/yr",
+      "evidence_quote": "the company signed a multi-year battery supply agreement with Voltcraft Industries worth $2.4M per year"
+    }
+  ]
+}
