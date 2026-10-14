@@ -37,6 +37,15 @@ LEDGER = HERE / "ledger.jsonl"
 
 MODEL = "claude-opus-5-5"
 MAX_TOKENS = 16000  # thinking tokens count against this on current Opus models; 4k truncates
+
+
+def _c(code, text):
+    """ANSI color only when stdout is a terminal; piped output (and the tests) stay plain."""
+    if not sys.stdout.isatty():
+        return text
+    if os.name == "nt":
+        os.system("")  # enable VT processing on legacy Windows consoles; a no-op elsewhere
+    return "\033[%sm%s\033[0m" % (code, text)
 VERDICTS = ("supported", "unsupported")
 
 SYNTHESIZE_PROMPT = """You are the SYNTHESIZE stage of a research pipeline.
@@ -278,9 +287,9 @@ def run(mode):
         claim = by_id[v["claim_id"]]
         if v["verdict"] == "supported":
             supported += 1
-            print("  [PASS] %-3s %-50s (%.2f)" % (v["claim_id"], claim["text"][:50], v["confidence"]))
+            print("  %s %-3s %-50s (%.2f)" % (_c("32", "[PASS]"), v["claim_id"], claim["text"][:50], v["confidence"]))
         else:
-            print("  [FAIL] %-3s %s" % (v["claim_id"], claim["text"]))
+            print("  %s %-3s %s" % (_c("1;31", "[FAIL]"), v["claim_id"], claim["text"]))
             print("         judge: %s" % v["reason"])
     total = len(judged["verdicts"])
 
@@ -306,7 +315,7 @@ def run(mode):
     hist_supported = sum(e["supported"] for e in history)
     hist_total = sum(e["total"] for e in history)
     ok, checked, _bad, why = verify_ledger(LEDGER)
-    print("\nVERDICT     %d/%d claims supported" % (supported, total))
+    print("\n%s     %d/%d claims supported" % (_c("1", "VERDICT"), supported, total))
     print("LEDGER      row appended to %s (rubric hash, article hash, prev-row hash); %s across %d row(s); history: %d/%d"
           % (LEDGER.name, why, checked, hist_supported, hist_total))
     if not ok:
@@ -321,7 +330,7 @@ def main():
     args = parser.parse_args()
     if args.verify:
         ok, checked, bad, why = verify_ledger()
-        print("LEDGER VERIFY  %s: %s (%d row(s)%s)" % ("OK" if ok else "BROKEN", why, checked, "" if ok else ", first bad row %d" % bad))
+        print("LEDGER VERIFY  %s: %s (%d row(s)%s)" % (_c("32", "OK") if ok else _c("1;31", "BROKEN"), why, checked, "" if ok else ", first bad row %d" % bad))
         sys.exit(0 if ok else 2)
     try:
         run("live" if args.live else "replay")
